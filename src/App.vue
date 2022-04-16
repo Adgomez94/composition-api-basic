@@ -1,9 +1,20 @@
 <template>
   <nav>
+    <!-- https://router.vuejs.org/guide/advanced/composition-api.html -->
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link :to="{name: 'counter-view'}">Counter</router-link> |
+    <router-link :to="{name: 'user-view'}">User</router-link> |
+    <router-link :to="{name: 'pokemon-search'}">Pokemon</router-link> |
+
   </nav>
-  <router-view/>
+
+  <!-- https://router.vuejs.org/guide/migration/#scrollbehavior-changes -->
+  <router-view v-slot="{ Component, route }">
+    <keep-alive>
+      <component :is="Component" :key="route.name" />
+    </keep-alive>
+  </router-view>
 </template>
 
 <style>
