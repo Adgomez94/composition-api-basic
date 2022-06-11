@@ -30,23 +30,56 @@
       </li>
     </ul>
   </div>
+  <button @click="openModal">Crear Todo</button>
+  <modal-comp
+   @on:close="closedModal"
+    v-if="isOpen"
+  >
+    <template #header>
+      <h1>Crear Todo</h1>
+    </template>
+    <template #form>
+      <form
+        @submit.prevent="createTodo">
+        <input
+          v-model="inputModel"
+          type="text">
+          <br>
+          <br>
+        <button type="submit">Crear</button>
+      </form>
+    </template>
+
+  </modal-comp>
 
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import ModalComp from '@/components/ModalComp.vue'
+
 import useTodo from '../composoble/useTodo'
 
 export default defineComponent({
-
+  components: {
+    ModalComp
+  },
   setup () {
-    const { pending, currentTab, getTodosByTab, toggleTodo } = useTodo()
+    const { pending, currentTab, getTodosByTab, toggleTodo, createTodo, inputModel } = useTodo()
+
+    const isOpen = ref<boolean>(false)
 
     return {
       pending,
       currentTab,
       getTodosByTab,
-      toggleTodo
+      toggleTodo,
+      createTodo,
+      inputModel,
+      isOpen,
+      openModal: () => (isOpen.value = true),
+      closedModal: () => (isOpen.value = false)
+
     }
   }
   // setup () {

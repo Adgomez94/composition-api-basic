@@ -6,7 +6,8 @@
     <router-link :to="{name: 'counter-view'}">Counter</router-link> |
     <router-link :to="{name: 'user-view'}">User</router-link> |
     <router-link :to="{name: 'pokemon-search'}">Pokemon</router-link> |
-    <router-link :to="{name: 'todo'}">Todo</router-link>
+    <router-link :to="{name: 'todo'}">Todo</router-link> |
+    <router-link :to="{name: 'slots'}">Slot</router-link>
 
   </nav>
 

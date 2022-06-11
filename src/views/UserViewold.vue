@@ -4,14 +4,12 @@
   <h5 v-if="errorMessage">{{errorMessage}} </h5>
 
   <div v-if="users.length">
-    <user-list
-      :users="users"
-      v-slot="{user}">
-      <div>
-        <h1>{{user.email}}</h1>
-
-      </div>
-    </user-list>
+    <ul>
+      <li v-for="user in users" :key="user.id">
+        <h4>{{user.first_name}}</h4>
+        <h4>{{user.email}}</h4>
+      </li>
+    </ul>
   </div>
 
   <button @click="prevPage">Atras</button>
@@ -20,14 +18,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import UserList from '../components/UserList.vue'
+import { defineComponent, ref } from 'vue'
 import useUser from '../composoble/useUser'
 
 export default defineComponent({
-  components: {
-    UserList
-  },
   setup () {
     const {
       isLoading,
@@ -54,6 +48,12 @@ export default defineComponent({
   h2{
     text-align: center;
     width: 100%;
+  }
+
+  div{
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
 
   ul {

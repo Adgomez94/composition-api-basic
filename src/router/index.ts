@@ -52,6 +52,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/todo',
     name: 'todo',
     component: () => import(/* webpackChunkName: "pokemonId" */ '../views/TodoVuex.vue')
+  },
+  {
+    path: '/slots',
+    name: 'slots',
+    component: () => import(/* webpackChunkName: "pokemonId" */ '../views/CustomSlot.vue')
   }
 ]
 
